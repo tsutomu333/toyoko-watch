@@ -1,0 +1,53 @@
+name: 東横イン空室ウォッチ
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # 30分ごとに起動（1回の起動で約28分間、3分おきにチェック）
+  workflow_dispatch: {}       # 手動実行ボタン
+
+permissions:
+  contents: write
+
+concurrency:
+  group: toyoko-watch
+  cancel-in-progress: false   # 前の実行が終わるまで次は待つ（二重実行しない）
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 空室チェック（約28分間ループ）
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          NOTIFY_TO: ${{ secrets.NOTIFY_TO }}
+          INTERVAL_SEC: "180"
+          DURATION_SEC: "1680"
+        run: |
+          git config user.name  "toyoko-watch-bot"
+          git config user.email "toyoko-watch-bot@users.noreply.github.com"
+          end=$(( $(date +%s) + DURATION_SEC ))
+          while :; do
+            started=$(date +%s)
+            # スマホ画面で追加・削除された条件を取り込む
+            git pull --rebase --quiet || git rebase --abort || true
+            python checker.py || true
+            if ! git diff --quiet -- state.json; then
+              git add state.json
+              git commit --quiet -m "state: $(TZ=Asia/Tokyo date '+%m/%d %H:%M')"
+              for i in 1 2 3; do
+                git pull --rebase --quiet && git push --quiet && break
+                sleep 5
+              done
+            fi
+            now=$(date +%s)
+            [ $(( now + INTERVAL_SEC )) -gt $end ] && break
+            sleep $(( INTERVAL_SEC - (now - started) > 0 ? INTERVAL_SEC - (now - started) : 0 ))
+          done
