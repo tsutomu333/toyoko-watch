@@ -2,34 +2,35 @@ name: 東横イン空室ウォッチ
 
 on:
   schedule:
-    - cron: "*/30 * * * *"   # 30分ごとに起動（1回の起動で約28分間、3分おきにチェック）
-  workflow_dispatch: {}       # 手動実行ボタン
+    - cron: "13,43 * * * *"   # 予備の起動（GitHubの定期起動は遅れたり抜けたりするため）
+  workflow_dispatch: {}       # 手動実行ボタン／前の実行からのリレー起動
 
 permissions:
   contents: write
+  actions: write              # 終了時に次の実行を自分で起動するため
 
 concurrency:
   group: toyoko-watch
-  cancel-in-progress: false   # 前の実行が終わるまで次は待つ（二重実行しない）
+  cancel-in-progress: false   # 実行中なら次は待つ（二重実行しない）
 
 jobs:
   watch:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
-      - name: 空室チェック（約28分間ループ）
+      - name: 空室チェック（約50分間、3分おきにループ）
         env:
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           NOTIFY_TO: ${{ secrets.NOTIFY_TO }}
           INTERVAL_SEC: "180"
-          DURATION_SEC: "1680"
+          DURATION_SEC: "3000"
         run: |
           git config user.name  "toyoko-watch-bot"
           git config user.email "toyoko-watch-bot@users.noreply.github.com"
@@ -51,3 +52,9 @@ jobs:
             [ $(( now + INTERVAL_SEC )) -gt $end ] && break
             sleep $(( INTERVAL_SEC - (now - started) > 0 ? INTERVAL_SEC - (now - started) : 0 ))
           done
+
+      - name: 次の実行をリレー起動（途切れず監視を続けるため）
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run watch.yml --ref main

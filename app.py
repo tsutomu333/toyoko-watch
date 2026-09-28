@@ -181,6 +181,9 @@ if last_run:
 if meta.get("fail_streak", 0) >= checker.BLOCK_ALERT_AFTER:
     st.warning("監視プログラムが空室データを取得できていません（アクセス制限の可能性）。")
 
+if st.session_state.get("flash"):
+    st.success(st.session_state.pop("flash"))
+
 tab_list, tab_add = st.tabs(["📋 登録中", "➕ 新しく登録"])
 
 # ---------------- 登録中の一覧
@@ -319,7 +322,8 @@ with tab_add:
     if b2.button("🔔 監視を登録", type="primary", use_container_width=True):
         try:
             update_watchlist(lambda wl: wl + [watch], f"add {checker.title(watch)} {watch['start']}")
-            st.success("登録しました。3分おきに確認し、空いたら Gmail でお知らせします。")
+            st.session_state.flash = f"「{checker.title(watch)}」を登録しました。3分おきに確認し、空いたら Gmail でお知らせします。"
+            st.rerun()
         except Exception as e:  # noqa: BLE001
             st.error(f"保存できませんでした: {e}")
 
