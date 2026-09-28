@@ -1,1 +1,16 @@
-[]
+[
+ {
+  "id": "test0001",
+  "hotel": "00153",
+  "hotel_name": "東横INN西鉄久留米駅東口（動作テスト用）",
+  "start": "2026-11-17",
+  "nights": 1,
+  "people": 1,
+  "rooms": 1,
+  "smoking": "noSmoking",
+  "room_keywords": [],
+  "member": false,
+  "active": true,
+  "created": "2026-09-28T09:30:00+09:00"
+ }
+]
