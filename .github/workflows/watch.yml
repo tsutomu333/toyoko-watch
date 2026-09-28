@@ -24,12 +24,13 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: 空室チェック（約50分間、3分おきにループ）
+      - name: 空室チェック（約50分間、1分おきにループ）
         env:
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           NOTIFY_TO: ${{ secrets.NOTIFY_TO }}
-          INTERVAL_SEC: "180"
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          INTERVAL_SEC: "60"
           DURATION_SEC: "3000"
         run: |
           git config user.name  "toyoko-watch-bot"

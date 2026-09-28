@@ -322,7 +322,7 @@ with tab_add:
     if b2.button("🔔 監視を登録", type="primary", use_container_width=True):
         try:
             update_watchlist(lambda wl: wl + [watch], f"add {checker.title(watch)} {watch['start']}")
-            st.session_state.flash = f"「{checker.title(watch)}」を登録しました。3分おきに確認し、空いたら Gmail でお知らせします。"
+            st.session_state.flash = f"「{checker.title(watch)}」を登録しました。1分おきに確認し、空いたらスマホに通知します。"
             st.rerun()
         except Exception as e:  # noqa: BLE001
             st.error(f"保存できませんでした: {e}")

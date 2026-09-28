@@ -58,6 +58,11 @@ def end_date(watch: dict) -> str:
     return d.isoformat()
 
 
+def fmt_day(s: str) -> str:
+    d = date.fromisoformat(s)
+    return f"{d.month}/{d.day}({'月火水木金土日'[d.weekday()]})"
+
+
 def load_hotels() -> dict[str, dict]:
     try:
         return {h["code"]: h for h in json.loads((BASE / "hotels.json").read_text(encoding="utf-8"))}
@@ -261,6 +266,40 @@ def send_mail(subject: str, body: str) -> bool:
     return True
 
 
+def send_push(title_: str, message: str, url: str | None = None, links: list[tuple[str, str]] | None = None) -> bool:
+    """ntfy アプリにプッシュ通知（数秒でロック画面に出る）。NTFY_TOPIC 未設定なら何もしない"""
+    topic = os.environ.get("NTFY_TOPIC", "").strip()
+    if not topic:
+        return False
+    body = {"topic": topic, "title": title_, "message": message, "priority": 5, "tags": ["hotel"]}
+    if url:
+        body["click"] = url
+    if links:
+        body["actions"] = [{"action": "view", "label": lbl[:20], "url": u} for lbl, u in links[:3]]
+    req = urllib.request.Request(
+        "https://ntfy.sh/", data=json.dumps(body).encode("utf-8"),
+        headers={"Content-Type": "application/json", "User-Agent": "toyoko-watch"}, method="POST")
+    with urllib.request.urlopen(req, timeout=20) as res:
+        res.read()
+    print(f"[push] 送信: {title_}")
+    return True
+
+
+def notify(subject: str, body: str, push_title: str, push_msg: str,
+           url: str | None = None, links: list[tuple[str, str]] | None = None) -> bool:
+    """プッシュ通知（最優先）とメールの両方を送る。どちらか届けば True"""
+    ok = False
+    try:
+        ok = send_push(push_title, push_msg, url, links) or ok
+    except Exception as e:  # noqa: BLE001
+        print(f"[push] 送信失敗: {e}")
+    try:
+        ok = send_mail(subject, body) or ok
+    except Exception as e:  # noqa: BLE001
+        print(f"[mail] 送信失敗: {e}")
+    return ok
+
+
 def smoking_label(s: str) -> str:
     return {"noSmoking": "禁煙", "smoking": "喫煙", "all": "禁煙・喫煙どちらでも"}.get(s, s)
 
@@ -369,11 +408,12 @@ def run_once() -> bool:
             print(f"[{wid}] {title(w)} {w['start']} 空きホテル {len(prev_codes)} -> {len(now_codes)}")
             if new_codes:
                 subject, body = multi_mail(w, result, new_codes)
-                try:
-                    send_mail(subject, body)
+                new = [h for h in result["hotels"] if h["code"] in new_codes]
+                short = lambda h: h["name"].replace("東横INN", "")
+                msg = "\n".join(f"{short(h)}" + (f" {h['price']:,}円〜" if h.get("price") else "") for h in new)
+                if notify(subject, body, f"空室あり {fmt_day(w['start'])} {len(new)}軒", msg,
+                          new[0]["url"], [(short(h), h["url"]) for h in new]):
                     st["last_notified"] = ts
-                except Exception as e:  # noqa: BLE001
-                    print(f"[mail] 送信失敗: {e}")
             continue
 
         key = booking_url(w)
@@ -406,11 +446,10 @@ def run_once() -> bool:
 
         if result["vacant"] > 0 and not prev:
             subject, body = vacancy_mail(w, result)
-            try:
-                send_mail(subject, body)
+            rooms = "・".join(r["type"] for r in result["rooms"] if r["vacant"] > 0)
+            if notify(subject, body, f"空室あり {fmt_day(w['start'])} {title(w).replace('東横INN', '')}",
+                      f"{rooms}（残り{result['vacant']}室）\nタップで予約ページ", booking_url(w)):
                 st["last_notified"] = ts
-            except Exception as e:  # noqa: BLE001
-                print(f"[mail] 送信失敗: {e}")
 
     # 削除された条件の状態は掃除する
     for k in list(state.keys()):
@@ -424,6 +463,10 @@ def run_once() -> bool:
         meta["fail_streak"] = 0
         meta["block_alerted"] = False
     if meta["fail_streak"] >= BLOCK_ALERT_AFTER and not meta.get("block_alerted"):
+        try:
+            send_push("⚠️ 空室ウォッチ停止中", "空室データを取得できていません。メールを確認してください。")
+        except Exception as e:  # noqa: BLE001
+            print(f"[push] 送信失敗: {e}")
         try:
             send_mail(
                 "【要確認】東横イン空室ウォッチが空室を取得できていません",
