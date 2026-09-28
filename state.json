@@ -2,8 +2,8 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-09-29T06:44:05+09:00",
-  "last_saved": "2026-09-29T06:44:05+09:00"
+  "last_run": "2026-09-29T06:59:04+09:00",
+  "last_saved": "2026-09-29T06:59:04+09:00"
  },
  "c22250e7": {
   "status": "vacant",
@@ -33,10 +33,10 @@
     "name": "東横INN博多西中洲",
     "price": 12065,
     "url": "https://www.toyoko-inn.com/search/result/room_plan/?hotel=00044&people=2&room=1&smoking=all&start=2026-10-08&end=2026-10-09",
-    "rooms": 2
+    "rooms": 1
    }
   ],
-  "last_checked": "2026-09-29T06:43:33+09:00",
+  "last_checked": "2026-09-29T06:58:33+09:00",
   "error": null,
   "last_notified": "2026-09-29T02:30:01+09:00"
  },
@@ -45,12 +45,12 @@
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-09-29T06:43:52+09:00",
+  "last_checked": "2026-09-29T06:58:51+09:00",
   "error": null
  },
  "5cab6d4b": {
-  "status": "vacant",
-  "vacant": 1,
+  "status": "full",
+  "vacant": 0,
   "rooms": [
    {
     "type": "プレミアムプラスルーム",
@@ -69,12 +69,12 @@
    {
     "type": "ツイン",
     "smoking": false,
-    "vacant": 1,
-    "price": 12065,
-    "plan": "スタンダードプラン"
+    "vacant": 0,
+    "price": null,
+    "plan": null
    }
   ],
-  "last_checked": "2026-09-29T06:44:05+09:00",
+  "last_checked": "2026-09-29T06:59:04+09:00",
   "error": null,
   "last_notified": "2026-09-29T04:39:41+09:00"
  }
