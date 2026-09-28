@@ -52,3 +52,35 @@ def test_transitions(tmp):
 import tempfile
 test_filters()
 with tempfile.TemporaryDirectory() as d: test_transitions(Path(d))
+
+# ---- 複数ホテル（県内すべて）
+PRICES = {"00152":{"vacant":True,"price":7470},"00153":{"vacant":True,"price":6570},"00017":{"vacant":False,"price":None},"00032":{"vacant":False,"price":None}}
+
+def test_multi(tmp):
+    import importlib; importlib.reload(checker)
+    checker.WATCHLIST = tmp/"watchlist.json"; checker.STATE = tmp/"state.json"; checker.REQUEST_GAP_SEC = 0
+    sent = []
+    checker.send_mail = lambda s,b: sent.append((s,b)) or True
+    cur = {"p": {k:{**v,"vacant":False} for k,v in PRICES.items()}}
+    checker.fetch_prices = lambda w: cur["p"]
+    mw = {"id":"m1","hotels":list(PRICES),"label":"福岡県（全4軒）","start":"2099-11-17","nights":1,"people":1,"rooms":1,"smoking":"noSmoking","room_keywords":[],"member":False,"active":True}
+    checker.save_json(checker.WATCHLIST, [mw])
+    checker.run_once(); assert sent == []
+    cur["p"] = {**cur["p"], "00153": PRICES["00153"]}
+    checker.run_once(); assert len(sent) == 1 and "00153" in sent[0][1] and "（1軒）" in sent[0][0]
+    cur["p"] = dict(PRICES)
+    checker.run_once(); assert len(sent) == 2 and "ほかに空いている" in sent[1][1]   # 00152が新たに空いた
+    checker.run_once(); assert len(sent) == 2
+    # 部屋タイプ指定あり: 空いたホテルは詳細確認（ツイン無しなので除外される）
+    mw2 = {**mw, "id":"m2", "room_keywords":["ツイン"]}
+    checker.fetch_plan = lambda w: FIX
+    checker.save_json(checker.WATCHLIST, [mw2]); checker.run_once()
+    st = checker.load_json(checker.STATE, {})
+    assert st["m2"]["status"] == "full", st["m2"]
+    mw3 = {**mw, "id":"m3", "room_keywords":["ダブル"]}
+    checker.save_json(checker.WATCHLIST, [mw3]); checker.run_once()
+    st = checker.load_json(checker.STATE, {})
+    assert st["m3"]["vacant"] == 2 and st["m3"]["hotels"][0]["price"] == 9100
+    print("multi ok\n" + sent[1][0] + "\n" + sent[1][1])
+
+with tempfile.TemporaryDirectory() as d: test_multi(Path(d))

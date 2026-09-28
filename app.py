@@ -42,7 +42,7 @@ def secret(key: str, default: str = "") -> str:
 
 pw = secret("APP_PASSWORD")
 if pw and not st.session_state.get("authed"):
-    st.title("🏨 東横イン空室ウォッチ")
+    st.markdown("### 🏨 東横イン空室ウォッチ")
     v = st.text_input("合言葉", type="password")
     if v == pw:
         st.session_state.authed = True
@@ -141,8 +141,31 @@ def show_rooms(rooms: list[dict]) -> None:
         st.caption("条件に合う部屋タイプがこのホテルにありません（部屋タイプの指定を見直してください）")
 
 
+def show_hotels(hotels: list[dict]) -> None:
+    """複数ホテル監視の結果（空いているホテル）を予約リンク付きで表示"""
+    for h in hotels:
+        price = f"　{h['price']:,}円〜" if h.get("price") else ""
+        st.markdown(f"🟢 [{h['name'].replace('東横INN', '')}]({h['url']}){price}")
+
+
+def show_result(w: dict, res: dict) -> None:
+    if checker.is_multi(w):
+        if res["vacant"] > 0:
+            st.success(f"いま {res['vacant']}軒 空いています（ホテル名をタップで予約ページ）")
+            show_hotels(res["hotels"])
+        else:
+            st.info(f"いまは{len(w['hotels'])}軒すべて満室です")
+    else:
+        if res["vacant"] > 0:
+            st.success(f"いま空いています（{res['vacant']}室）")
+            st.link_button("予約ページを開く", checker.booking_url(w))
+        else:
+            st.info("いまは満室です")
+        show_rooms(res["rooms"])
+
+
 # ------------------------------------------------------------ 画面
-st.title("🏨 東横イン空室ウォッチ")
+st.markdown("### 🏨 東横イン空室ウォッチ")
 
 try:
     watchlist, _ = store.read("watchlist.json", [])
@@ -175,7 +198,8 @@ with tab_list:
         if paused:
             badge = "⏸ 一時停止中"
         elif status == "vacant":
-            badge = f"🟢 空室あり {s.get('vacant', 0)}室"
+            unit = "軒" if checker.is_multi(w) else "室"
+            badge = f"🟢 空室あり {s.get('vacant', 0)}{unit}"
         elif status == "full":
             badge = "🔴 満室（監視中）"
         elif status == "expired":
@@ -187,7 +211,7 @@ with tab_list:
 
         kw = "・".join(w.get("room_keywords") or []) or "部屋指定なし"
         with st.container(border=True):
-            st.markdown(f"**{w.get('hotel_name', w['hotel'])}**  \n{badge}")
+            st.markdown(f"**{checker.title(w)}**  \n{badge}")
             st.caption(
                 f"{fmt_date(w['start'])}から{w.get('nights', 1)}泊 / {w.get('people', 1)}名・{w.get('rooms', 1)}室 / "
                 f"{SMOKING_R.get(w.get('smoking', 'all'))} / {kw}"
@@ -197,7 +221,10 @@ with tab_list:
                 st.caption(f"エラー内容: {s['error']}")
 
             c1, c2, c3, c4 = st.columns(4)
-            c1.link_button("予約", checker.booking_url(w), use_container_width=True)
+            if checker.is_multi(w):
+                c1.link_button("一覧", checker.area_url(w), use_container_width=True)
+            else:
+                c1.link_button("予約", checker.booking_url(w), use_container_width=True)
             if c2.button("今すぐ", key=f"chk_{w['id']}", use_container_width=True):
                 with st.spinner("公式サイトを確認中…"):
                     try:
@@ -225,11 +252,9 @@ with tab_list:
                 if "error" in live:
                     st.error(f"確認できませんでした: {live['error']}")
                 else:
-                    if live["vacant"] > 0:
-                        st.success(f"いま空いています（{live['vacant']}室）→「予約」からすぐどうぞ")
-                    else:
-                        st.info("いまは満室です")
-                    show_rooms(live["rooms"])
+                    show_result(w, live)
+            elif checker.is_multi(w) and status == "vacant" and s.get("hotels"):
+                show_hotels(s["hotels"])
             elif s.get("rooms") and status in ("vacant", "full"):
                 with st.expander("前回チェック時の部屋別状況"):
                     show_rooms(s["rooms"])
@@ -241,7 +266,10 @@ with tab_add:
     default_pref = prefs.index("福岡県") if "福岡県" in prefs else 0
     pref = st.selectbox("都道府県", prefs, index=default_pref)
     cand = [h for h in hotels if h["pref"] == pref]
-    hotel = st.selectbox("ホテル", cand, format_func=lambda h: h["name"].replace("東横INN", ""))
+    picked = st.multiselect(
+        f"ホテル（空欄なら{pref}の全{len(cand)}軒をまとめて監視）", cand,
+        format_func=lambda h: h["name"].replace("東横INN", ""), placeholder="すべてのホテル",
+    )
 
     c1, c2 = st.columns(2)
     start = c1.date_input("チェックイン", value=datetime.now(JST).date() + timedelta(days=1), min_value=datetime.now(JST).date())
@@ -256,10 +284,16 @@ with tab_add:
     )
     member = st.checkbox("会員料金・会員枠で判定する（東横INNクラブカード会員の人）")
 
+    base = {"id": uuid.uuid4().hex[:8]}
+    if len(picked) == 1:
+        base.update({"hotel": picked[0]["code"], "hotel_name": picked[0]["name"]})
+    else:
+        targets = picked or cand
+        label = f"{pref}（全{len(cand)}軒）" if not picked else "・".join(
+            h["name"].replace("東横INN", "") for h in picked)
+        base.update({"hotels": [h["code"] for h in targets], "label": label, "pref": pref})
     watch = {
-        "id": uuid.uuid4().hex[:8],
-        "hotel": hotel["code"],
-        "hotel_name": hotel["name"],
+        **base,
         "start": start.isoformat(),
         "nights": int(nights),
         "people": int(people),
@@ -276,18 +310,15 @@ with tab_add:
         with st.spinner("公式サイトを確認中…"):
             try:
                 res = checker.check_watch(watch)
-                if res["vacant"] > 0:
-                    st.success(f"いま空いています（{res['vacant']}室）。登録せずにそのまま予約できます。")
-                    st.link_button("予約ページを開く", checker.booking_url(watch))
-                else:
-                    st.info("満室です。「監視を登録」で空いたらメールします。")
-                show_rooms(res["rooms"])
+                show_result(watch, res)
+                if res["vacant"] == 0:
+                    st.caption("「監視を登録」を押すと、空いた時にメールします。")
             except Exception as e:  # noqa: BLE001
                 st.error(f"確認できませんでした: {e}")
 
     if b2.button("🔔 監視を登録", type="primary", use_container_width=True):
         try:
-            update_watchlist(lambda wl: wl + [watch], f"add {watch['hotel_name']} {watch['start']}")
+            update_watchlist(lambda wl: wl + [watch], f"add {checker.title(watch)} {watch['start']}")
             st.success("登録しました。3分おきに確認し、空いたら Gmail でお知らせします。")
         except Exception as e:  # noqa: BLE001
             st.error(f"保存できませんでした: {e}")

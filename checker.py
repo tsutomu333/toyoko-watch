@@ -58,9 +58,40 @@ def end_date(watch: dict) -> str:
     return d.isoformat()
 
 
-def booking_url(watch: dict) -> str:
+def load_hotels() -> dict[str, dict]:
+    try:
+        return {h["code"]: h for h in json.loads((BASE / "hotels.json").read_text(encoding="utf-8"))}
+    except Exception:  # noqa: BLE001
+        return {}
+
+
+HOTELS = load_hotels()
+PREF_CODES = (  # 都道府県コード順（公式サイトの prefecture= の番号）
+    "北海道 青森県 岩手県 宮城県 秋田県 山形県 福島県 茨城県 栃木県 群馬県 埼玉県 千葉県 東京都 神奈川県 "
+    "新潟県 富山県 石川県 福井県 山梨県 長野県 岐阜県 静岡県 愛知県 三重県 滋賀県 京都府 大阪府 兵庫県 "
+    "奈良県 和歌山県 鳥取県 島根県 岡山県 広島県 山口県 徳島県 香川県 愛媛県 高知県 福岡県 佐賀県 長崎県 "
+    "熊本県 大分県 宮崎県 鹿児島県 沖縄県"
+).split()
+
+
+def is_multi(watch: dict) -> bool:
+    """複数ホテル（県内すべて等）をまとめて監視する条件か"""
+    return bool(watch.get("hotels"))
+
+
+def title(watch: dict) -> str:
+    if is_multi(watch):
+        return watch.get("label") or f"{len(watch['hotels'])}軒"
+    return watch.get("hotel_name", watch.get("hotel", ""))
+
+
+def hotel_name(code: str) -> str:
+    return HOTELS.get(code, {}).get("name", code)
+
+
+def booking_url(watch: dict, hotel: str | None = None) -> str:
     q = {
-        "hotel": watch["hotel"],
+        "hotel": hotel or watch.get("hotel") or watch["hotels"][0],
         "people": watch.get("people", 1),
         "room": watch.get("rooms", 1),
         "smoking": watch.get("smoking", "all"),
@@ -68,6 +99,16 @@ def booking_url(watch: dict) -> str:
         "end": end_date(watch),
     }
     return f"{SITE}/search/result/room_plan/?" + urllib.parse.urlencode(q)
+
+
+def area_url(watch: dict) -> str:
+    """公式サイトの県別の検索結果一覧（複数ホテル監視の「一覧」ボタン用）"""
+    q = {"people": watch.get("people", 1), "room": watch.get("rooms", 1),
+         "smoking": watch.get("smoking", "all"), "start": watch["start"], "end": end_date(watch)}
+    pref = watch.get("pref")
+    if pref in PREF_CODES:
+        q = {"prefecture": PREF_CODES.index(pref) + 1, **q}
+    return f"{SITE}/search/result/?" + urllib.parse.urlencode(q)
 
 
 def fetch_plan(watch: dict) -> dict:
@@ -137,9 +178,68 @@ def evaluate(watch: dict, plan: dict) -> dict:
     }
 
 
+def fetch_prices(watch: dict) -> dict[str, dict]:
+    """複数ホテルの空室有無と最安値を1回の問い合わせでまとめて取得（公式サイトの検索結果一覧と同じ仕組み）"""
+    start = date.fromisoformat(watch["start"])
+    end = date.fromisoformat(end_date(watch))
+    iso = lambda d: f"{(d - timedelta(days=1)).isoformat()}T15:00:00.000Z"  # 日本時間0時をUTCで表す
+    out: dict[str, dict] = {}
+    codes = list(watch["hotels"])
+    for i in range(0, len(codes), 60):
+        inp = {"0": {"json": {
+            "hotelCodes": codes[i:i + 60],
+            "checkinDate": iso(start), "checkoutDate": iso(end),
+            "numberOfPeople": int(watch.get("people", 1)),
+            "numberOfRoom": int(watch.get("rooms", 1)),
+            "smokingType": watch.get("smoking", "all"),
+        }, "meta": {"values": {"checkinDate": ["Date"], "checkoutDate": ["Date"]}}}}
+        url = f"{SITE}/api/trpc/hotels.availabilities.prices?batch=1&input=" + urllib.parse.quote(
+            json.dumps(inp, separators=(",", ":")))
+        req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/json"})
+        try:
+            with urllib.request.urlopen(req, timeout=40) as res:
+                data = json.loads(res.read().decode("utf-8"))
+            prices = data[0]["result"]["data"]["json"]["prices"]
+        except urllib.error.HTTPError as e:
+            raise FetchError(f"HTTP {e.code}") from e
+        except Exception as e:  # noqa: BLE001
+            raise FetchError(f"空室一覧の取得に失敗: {e}") from e
+        for code, v in prices.items():
+            out[code] = {
+                "vacant": bool(v.get("existEnoughVacantRooms")) and not v.get("isUnderMaintenance"),
+                "price": v.get("lowestPrice") or None,
+            }
+        if i + 60 < len(codes):
+            time.sleep(REQUEST_GAP_SEC)
+    return out
+
+
+def check_multi(watch: dict) -> dict:
+    """複数ホテルの条件をチェック。部屋タイプ指定や会員枠の指定がある時は、空いたホテルだけ詳しく確認する"""
+    prices = fetch_prices(watch)
+    detailed = bool(watch.get("room_keywords")) or bool(watch.get("member"))
+    hotels = []
+    for code in watch["hotels"]:
+        p = prices.get(code)
+        if not p or not p["vacant"]:
+            continue
+        item = {"code": code, "name": hotel_name(code), "price": p["price"], "url": booking_url(watch, code)}
+        if detailed:
+            time.sleep(REQUEST_GAP_SEC)
+            r = evaluate(watch, fetch_plan({**watch, "hotel": code}))
+            if r["vacant"] <= 0:
+                continue
+            prices_ok = [x["price"] for x in r["rooms"] if x["vacant"] > 0 and x["price"]]
+            item.update({"price": min(prices_ok) if prices_ok else None, "rooms": r["vacant"]})
+        hotels.append(item)
+    return {"vacant": len(hotels), "hotels": hotels, "checked": len(prices)}
+
+
 def check_watch(watch: dict) -> dict:
     """1件の条件をチェックして結果を返す（Streamlit画面からも使う）"""
-    return evaluate(watch, fetch_plan(watch))
+    if is_multi(watch):
+        return check_multi(watch)
+    return evaluate(watch, fetch_plan({**watch, "hotel": watch["hotel"]}))
 
 
 # ---------------------------------------------------------------- 通知
@@ -168,7 +268,7 @@ def smoking_label(s: str) -> str:
 def describe(watch: dict) -> str:
     kw = "・".join(watch.get("room_keywords") or []) or "指定なし"
     return (
-        f"{watch.get('hotel_name', watch['hotel'])}\n"
+        f"{title(watch)}\n"
         f"日程: {watch['start']} から {watch.get('nights', 1)}泊\n"
         f"人数: {watch.get('people', 1)}名 / {watch.get('rooms', 1)}室\n"
         f"禁煙/喫煙: {smoking_label(watch.get('smoking', 'all'))}\n"
@@ -177,13 +277,30 @@ def describe(watch: dict) -> str:
     )
 
 
+def multi_mail(watch: dict, result: dict, new_codes: list[str]) -> tuple[str, str]:
+    def line(h):
+        price = f"{h['price']:,}円〜" if h.get("price") else ""
+        return f"■ {h['name']}  {price}\n  {h['url']}"
+    new = [h for h in result["hotels"] if h["code"] in new_codes]
+    others = [h for h in result["hotels"] if h["code"] not in new_codes]
+    subject = f"【空室あり】{title(watch)} {watch['start']}（{len(new)}軒）"
+    body = (
+        "キャンセルが出ました。早い者勝ちなので、すぐ予約してください。\n\n"
+        "▼ 新しく空いたホテル（リンクをタップで予約ページ）\n" + "\n".join(line(h) for h in new) + "\n\n"
+        + ("▼ ほかに空いているホテル\n" + "\n".join(line(h) for h in others) + "\n\n" if others else "")
+        + "▼ 登録条件\n" + describe(watch) + "\n\n"
+        f"確認時刻: {now_jst():%Y-%m-%d %H:%M} (JST)\n"
+    )
+    return subject, body
+
+
 def vacancy_mail(watch: dict, result: dict) -> tuple[str, str]:
     lines = []
     for r in result["rooms"]:
         if r["vacant"] > 0:
             price = f"{r['price']:,}円" if r["price"] else "-"
             lines.append(f"  ・{r['type']}（{'喫煙' if r['smoking'] else '禁煙'}）残り{r['vacant']}室  {price}〜  {r['plan'] or ''}")
-    subject = f"【空室あり】{watch.get('hotel_name', watch['hotel'])} {watch['start']}"
+    subject = f"【空室あり】{title(watch)} {watch['start']}"
     body = (
         "キャンセルが出ました。早い者勝ちなので、すぐ予約してください。\n\n"
         f"▼ 予約ページ（タップで開く）\n{booking_url(watch)}\n\n"
@@ -226,6 +343,39 @@ def run_once() -> bool:
             st["status"] = "expired"
             continue
 
+        if is_multi(w):
+            ts = now_jst().isoformat(timespec="seconds")
+            try:
+                result = check_multi(w)
+            except FetchError as e:
+                fail_count += 1
+                st.update({"status": "error", "error": str(e), "last_checked": ts})
+                print(f"[{wid}] 取得失敗: {e}")
+                continue
+            finally:
+                time.sleep(REQUEST_GAP_SEC)
+            ok_count += 1
+            prev_codes = set(st.get("vacant_hotels") or [])
+            now_codes = [h["code"] for h in result["hotels"]]
+            new_codes = [c for c in now_codes if c not in prev_codes]
+            st.update({
+                "status": "vacant" if now_codes else "full",
+                "vacant": len(now_codes),
+                "vacant_hotels": now_codes,
+                "hotels": result["hotels"],
+                "last_checked": ts,
+                "error": None,
+            })
+            print(f"[{wid}] {title(w)} {w['start']} 空きホテル {len(prev_codes)} -> {len(now_codes)}")
+            if new_codes:
+                subject, body = multi_mail(w, result, new_codes)
+                try:
+                    send_mail(subject, body)
+                    st["last_notified"] = ts
+                except Exception as e:  # noqa: BLE001
+                    print(f"[mail] 送信失敗: {e}")
+            continue
+
         key = booking_url(w)
         if key not in cache:
             try:
@@ -252,7 +402,7 @@ def run_once() -> bool:
             "last_checked": ts,
             "error": None,
         })
-        print(f"[{wid}] {w.get('hotel_name')} {w['start']} 空室 {prev} -> {result['vacant']}")
+        print(f"[{wid}] {title(w)} {w['start']} 空室 {prev} -> {result['vacant']}")
 
         if result["vacant"] > 0 and not prev:
             subject, body = vacancy_mail(w, result)
@@ -298,7 +448,7 @@ def run_once() -> bool:
 
 
 def signature(state: dict) -> dict:
-    return {k: (v.get("status"), v.get("vacant"), v.get("error"))
+    return {k: (v.get("status"), v.get("vacant"), v.get("error"), tuple(v.get("vacant_hotels") or ()))
             for k, v in state.items() if k != "_meta"}
 
 
