@@ -6,8 +6,8 @@
   "last_saved": "2026-09-28T09:23:09+09:00"
  },
  "test0001": {
-  "status": "vacant",
-  "vacant": 43,
+  "status": "full",
+  "vacant": 0,
   "rooms": [
    {
     "type": "シングル",
