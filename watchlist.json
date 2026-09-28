@@ -42,5 +42,19 @@
   "member": true,
   "active": true,
   "created": "2026-09-28T10:11:21+09:00"
+ },
+ {
+  "id": "5cab6d4b",
+  "hotel": "00044",
+  "hotel_name": "東横INN博多西中洲",
+  "start": "2026-10-08",
+  "nights": 1,
+  "people": 2,
+  "rooms": 1,
+  "smoking": "noSmoking",
+  "room_keywords": [],
+  "member": true,
+  "active": true,
+  "created": "2026-09-28T10:20:51+09:00"
  }
 ]
