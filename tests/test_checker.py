@@ -17,7 +17,7 @@ def test_filters():
     assert checker.evaluate(w(smoking="noSmoking", room_keywords=["ダブル"]), FIX)["vacant"] == 6+4
     assert checker.evaluate(w(room_keywords=["ツイン"]), FIX)["vacant"] == 0
     r = checker.evaluate(w(smoking="noSmoking", room_keywords=["シングル"]), FIX)
-    assert r["rooms"][0]["price"] == 6570  # 空きのある最安プラン(学割)
+    assert r["rooms"][0]["price"] == 7100  # 学割は除外してスタンダード
     print("filters ok")
 
 def test_transitions(tmp):

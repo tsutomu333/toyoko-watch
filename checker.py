@@ -40,6 +40,7 @@ UA = (
     "(KHTML, like Gecko) Chrome/128.0 Safari/537.36"
 )
 REQUEST_GAP_SEC = 3          # 1リクエストごとの間隔（サイトに負荷をかけない）
+EXCLUDE_PRICE_PLANS = ("学割",)
 BLOCK_ALERT_AFTER = 5        # 連続でこの回数取得に失敗したら「監視が止まっている」メール
 
 
@@ -115,7 +116,9 @@ def evaluate(watch: dict, plan: dict) -> dict:
         for p in rt.get("plans", []):
             v = int((p.get("vacant") or {}).get(vkey) or 0)
             price = (p.get("price") or {}).get(pkey)
-            if v > 0 and (best_price is None or (price or 10**9) < best_price):
+            # 学割など条件付きプランは料金表示に使わない（空室数の判定には含める）
+            special = any(x in (p.get("planName") or "") for x in EXCLUDE_PRICE_PLANS)
+            if v > 0 and not special and (best_price is None or (price or 10**9) < best_price):
                 best_price, best_plan = price, p.get("planName")
             best_vac = max(best_vac, v)
         rooms.append({
