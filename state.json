@@ -1,1 +1,52 @@
-{}
+{
+ "_meta": {
+  "fail_streak": 0,
+  "block_alerted": false,
+  "last_run": "2026-09-28T09:23:09+09:00",
+  "last_saved": "2026-09-28T09:23:09+09:00"
+ },
+ "test0001": {
+  "status": "vacant",
+  "vacant": 43,
+  "rooms": [
+   {
+    "type": "シングル",
+    "smoking": false,
+    "vacant": 33,
+    "price": 6570,
+    "plan": "学割プラン"
+   },
+   {
+    "type": "プレミアムプラスルーム",
+    "smoking": false,
+    "vacant": 0,
+    "price": null,
+    "plan": null
+   },
+   {
+    "type": "エコノミーダブル",
+    "smoking": false,
+    "vacant": 6,
+    "price": 8370,
+    "plan": "学割プラン"
+   },
+   {
+    "type": "ダブル",
+    "smoking": false,
+    "vacant": 4,
+    "price": 9270,
+    "plan": "学割プラン"
+   },
+   {
+    "type": "ハートフルツイン",
+    "smoking": false,
+    "vacant": 0,
+    "price": null,
+    "plan": null
+   }
+  ],
+  "last_checked": "2026-09-28T09:23:09+09:00",
+  "error": null,
+  "last_notified": "2026-09-28T09:23:09+09:00"
+ }
+}
