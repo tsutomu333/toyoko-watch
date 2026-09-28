@@ -20,5 +20,27 @@
   "member": true,
   "active": true,
   "created": "2026-09-28T10:10:20+09:00"
+ },
+ {
+  "id": "20e9141b",
+  "hotels": [
+   "00101",
+   "00125"
+  ],
+  "label": "宮崎駅前・宮崎中央通",
+  "pref": "宮崎県",
+  "start": "2026-11-22",
+  "nights": 1,
+  "people": 2,
+  "rooms": 1,
+  "smoking": "noSmoking",
+  "room_keywords": [
+   "ツイン",
+   "トリプル",
+   "プレミアム"
+  ],
+  "member": true,
+  "active": true,
+  "created": "2026-09-28T10:11:21+09:00"
  }
 ]
