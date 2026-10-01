@@ -2,8 +2,8 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-01T13:04:30+09:00",
-  "last_saved": "2026-10-01T13:04:30+09:00"
+  "last_run": "2026-10-01T13:19:30+09:00",
+  "last_saved": "2026-10-01T13:19:30+09:00"
  },
  "c22250e7": {
   "status": "vacant",
@@ -20,7 +20,7 @@
     "rooms": 1
    }
   ],
-  "last_checked": "2026-10-01T13:04:12+09:00",
+  "last_checked": "2026-10-01T13:19:11+09:00",
   "error": null,
   "last_notified": "2026-10-01T12:18:02+09:00"
  },
@@ -29,7 +29,7 @@
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-01T13:04:21+09:00",
+  "last_checked": "2026-10-01T13:19:21+09:00",
   "error": null
  },
  "5cab6d4b": {
@@ -58,7 +58,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-01T13:04:30+09:00",
+  "last_checked": "2026-10-01T13:19:30+09:00",
   "error": null,
   "last_notified": "2026-10-01T10:42:19+09:00"
  }
