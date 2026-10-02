@@ -2,15 +2,15 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-03T01:05:42+09:00",
-  "last_saved": "2026-10-03T01:05:42+09:00"
+  "last_run": "2026-10-03T01:13:43+09:00",
+  "last_saved": "2026-10-03T01:13:43+09:00"
  },
  "c22250e7": {
   "status": "full",
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-03T01:05:29+09:00",
+  "last_checked": "2026-10-03T01:13:28+09:00",
   "error": null,
   "last_notified": "2026-10-03T01:04:28+09:00"
  },
@@ -19,12 +19,12 @@
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-03T01:05:33+09:00",
+  "last_checked": "2026-10-03T01:13:33+09:00",
   "error": null
  },
  "5cab6d4b": {
-  "status": "full",
-  "vacant": 0,
+  "status": "vacant",
+  "vacant": 1,
   "rooms": [
    {
     "type": "プレミアムプラスルーム",
@@ -36,9 +36,9 @@
    {
     "type": "エコノミーダブル",
     "smoking": false,
-    "vacant": 0,
-    "price": null,
-    "plan": null
+    "vacant": 1,
+    "price": 10640,
+    "plan": "スタンダードプラン"
    },
    {
     "type": "ツイン",
@@ -48,8 +48,8 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-03T01:05:42+09:00",
+  "last_checked": "2026-10-03T01:13:42+09:00",
   "error": null,
-  "last_notified": "2026-10-02T17:49:38+09:00"
+  "last_notified": "2026-10-03T01:13:42+09:00"
  }
 }
