@@ -2,15 +2,15 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-02T17:29:07+09:00",
-  "last_saved": "2026-10-02T17:29:07+09:00"
+  "last_run": "2026-10-02T17:44:33+09:00",
+  "last_saved": "2026-10-02T17:44:33+09:00"
  },
  "c22250e7": {
   "status": "full",
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-02T17:28:53+09:00",
+  "last_checked": "2026-10-02T17:44:19+09:00",
   "error": null,
   "last_notified": "2026-10-02T15:14:54+09:00"
  },
@@ -19,7 +19,7 @@
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-02T17:28:57+09:00",
+  "last_checked": "2026-10-02T17:44:23+09:00",
   "error": null
  },
  "5cab6d4b": {
@@ -48,7 +48,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-02T17:29:07+09:00",
+  "last_checked": "2026-10-02T17:44:33+09:00",
   "error": null,
   "last_notified": "2026-10-02T07:28:58+09:00"
  }
