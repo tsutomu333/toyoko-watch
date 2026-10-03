@@ -2,25 +2,15 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-03T15:29:55+09:00",
-  "last_saved": "2026-10-03T15:29:55+09:00"
+  "last_run": "2026-10-03T15:39:50+09:00",
+  "last_saved": "2026-10-03T15:39:50+09:00"
  },
  "c22250e7": {
-  "status": "vacant",
-  "vacant": 1,
-  "vacant_hotels": [
-   "00032"
-  ],
-  "hotels": [
-   {
-    "code": "00032",
-    "name": "東横INN博多駅南",
-    "price": 11115,
-    "url": "https://www.toyoko-inn.com/search/result/room_plan/?hotel=00032&people=2&room=1&smoking=all&start=2026-10-08&end=2026-10-09",
-    "rooms": 2
-   }
-  ],
-  "last_checked": "2026-10-03T15:29:35+09:00",
+  "status": "full",
+  "vacant": 0,
+  "vacant_hotels": [],
+  "hotels": [],
+  "last_checked": "2026-10-03T15:39:36+09:00",
   "error": null,
   "last_notified": "2026-10-03T14:43:04+09:00"
  },
@@ -29,7 +19,7 @@
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-03T15:29:45+09:00",
+  "last_checked": "2026-10-03T15:39:40+09:00",
   "error": null
  },
  "5cab6d4b": {
@@ -58,7 +48,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-03T15:29:55+09:00",
+  "last_checked": "2026-10-03T15:39:50+09:00",
   "error": null,
   "last_notified": "2026-10-03T08:57:49+09:00"
  }
