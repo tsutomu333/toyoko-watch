@@ -2,14 +2,15 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-04T23:56:33+09:00",
-  "last_saved": "2026-10-04T23:56:33+09:00"
+  "last_run": "2026-10-05T00:12:07+09:00",
+  "last_saved": "2026-10-05T00:12:07+09:00"
  },
  "c22250e7": {
   "status": "vacant",
-  "vacant": 1,
+  "vacant": 2,
   "vacant_hotels": [
-   "00043"
+   "00043",
+   "00218"
   ],
   "hotels": [
    {
@@ -18,18 +19,25 @@
     "price": 14725,
     "url": "https://www.toyoko-inn.com/search/result/room_plan/?hotel=00043&people=2&room=1&smoking=all&start=2026-10-08&end=2026-10-09",
     "rooms": 1
+   },
+   {
+    "code": "00218",
+    "name": "東横INN福岡天神",
+    "price": 10640,
+    "url": "https://www.toyoko-inn.com/search/result/room_plan/?hotel=00218&people=2&room=1&smoking=all&start=2026-10-08&end=2026-10-09",
+    "rooms": 1
    }
   ],
-  "last_checked": "2026-10-04T23:56:13+09:00",
+  "last_checked": "2026-10-05T00:11:43+09:00",
   "error": null,
-  "last_notified": "2026-10-04T23:05:39+09:00"
+  "last_notified": "2026-10-05T00:11:43+09:00"
  },
  "20e9141b": {
   "status": "full",
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-04T23:56:23+09:00",
+  "last_checked": "2026-10-05T00:11:58+09:00",
   "error": null
  },
  "5cab6d4b": {
@@ -58,7 +66,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-04T23:56:33+09:00",
+  "last_checked": "2026-10-05T00:12:07+09:00",
   "error": null,
   "last_notified": "2026-10-04T01:00:24+09:00"
  }
