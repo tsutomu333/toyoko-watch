@@ -2,15 +2,26 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-06T11:44:10+09:00",
-  "last_saved": "2026-10-06T11:44:10+09:00"
+  "last_run": "2026-10-06T11:58:32+09:00",
+  "last_saved": "2026-10-06T11:58:32+09:00"
  },
  "20e9141b": {
-  "status": "full",
-  "vacant": 0,
-  "vacant_hotels": [],
-  "hotels": [],
-  "last_checked": "2026-10-06T11:44:01+09:00",
-  "error": null
+  "status": "vacant",
+  "vacant": 1,
+  "vacant_hotels": [
+   "00101"
+  ],
+  "hotels": [
+   {
+    "code": "00101",
+    "name": "東横INN宮崎駅前",
+    "price": 15010,
+    "url": "https://www.toyoko-inn.com/search/result/room_plan/?hotel=00101&people=2&room=1&smoking=noSmoking&start=2026-11-22&end=2026-11-23",
+    "rooms": 1
+   }
+  ],
+  "last_checked": "2026-10-06T11:58:22+09:00",
+  "error": null,
+  "last_notified": "2026-10-06T11:58:22+09:00"
  }
 }
