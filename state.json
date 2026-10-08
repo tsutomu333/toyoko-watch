@@ -2,15 +2,15 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-09T07:43:33+09:00",
-  "last_saved": "2026-10-09T07:43:33+09:00"
+  "last_run": "2026-10-09T07:58:47+09:00",
+  "last_saved": "2026-10-09T07:58:47+09:00"
  },
  "20e9141b": {
   "status": "full",
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-09T07:43:29+09:00",
+  "last_checked": "2026-10-09T07:58:43+09:00",
   "error": null,
   "last_notified": "2026-10-06T11:58:22+09:00"
  }
