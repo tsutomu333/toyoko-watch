@@ -1,17 +1,17 @@
 {
  "_meta": {
-  "fail_streak": 1,
+  "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-09T11:27:54+09:00",
-  "last_saved": "2026-10-09T11:27:54+09:00"
+  "last_run": "2026-10-09T11:28:43+09:00",
+  "last_saved": "2026-10-09T11:28:43+09:00"
  },
  "20e9141b": {
-  "status": "error",
+  "status": "full",
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-09T11:27:40+09:00",
-  "error": "HTTP 429",
+  "last_checked": "2026-10-09T11:28:39+09:00",
+  "error": null,
   "last_notified": "2026-10-06T11:58:22+09:00"
  }
 }
