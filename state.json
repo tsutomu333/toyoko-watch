@@ -2,32 +2,25 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-17T23:46:12+09:00",
-  "last_saved": "2026-10-17T23:46:12+09:00"
+  "last_run": "2026-10-17T23:59:42+09:00",
+  "last_saved": "2026-10-17T23:59:42+09:00"
  },
  "20e9141b": {
   "status": "full",
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-17T23:45:49+09:00",
+  "last_checked": "2026-10-17T23:59:20+09:00",
   "error": null,
   "last_notified": "2026-10-16T07:35:35+09:00"
  },
  "2ba2ea21": {
   "status": "vacant",
-  "vacant": 2,
+  "vacant": 1,
   "vacant_hotels": [
-   "00044",
    "00017"
   ],
   "hotels": [
-   {
-    "code": "00044",
-    "name": "東横INN博多西中洲",
-    "price": 11200,
-    "url": "https://www.toyoko-inn.com/search/result/room_plan/?hotel=00044&people=2&room=1&smoking=all&start=2026-10-29&end=2026-10-30"
-   },
    {
     "code": "00017",
     "name": "東横INN博多駅前祇園",
@@ -35,7 +28,7 @@
     "url": "https://www.toyoko-inn.com/search/result/room_plan/?hotel=00017&people=2&room=1&smoking=all&start=2026-10-29&end=2026-10-30"
    }
   ],
-  "last_checked": "2026-10-17T23:45:53+09:00",
+  "last_checked": "2026-10-17T23:59:24+09:00",
   "error": null,
   "last_notified": "2026-10-17T22:34:19+09:00"
  },
@@ -44,7 +37,7 @@
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-17T23:45:58+09:00",
+  "last_checked": "2026-10-17T23:59:28+09:00",
   "error": null,
   "last_notified": "2026-10-17T19:06:13+09:00"
  },
@@ -102,7 +95,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-17T23:46:06+09:00",
+  "last_checked": "2026-10-17T23:59:37+09:00",
   "error": null
  },
  "32e938dd": {
@@ -159,7 +152,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-17T23:46:12+09:00",
+  "last_checked": "2026-10-17T23:59:42+09:00",
   "error": null
  }
 }
