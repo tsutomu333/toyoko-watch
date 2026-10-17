@@ -42,5 +42,22 @@
   "member": false,
   "active": true,
   "created": "2026-10-16T08:05:33+09:00"
+ },
+ {
+  "id": "3bfd9c03",
+  "hotels": [
+   "00045"
+  ],
+  "label": "佐賀県（全1軒）",
+  "pref": "佐賀県",
+  "start": "2026-10-30",
+  "nights": 1,
+  "people": 2,
+  "rooms": 1,
+  "smoking": "all",
+  "room_keywords": [],
+  "member": false,
+  "active": true,
+  "created": "2026-10-17T16:41:27+09:00"
  }
 ]
