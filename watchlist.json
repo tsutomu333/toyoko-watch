@@ -59,5 +59,19 @@
   "member": false,
   "active": true,
   "created": "2026-10-17T16:41:27+09:00"
+ },
+ {
+  "id": "3b0e70ae",
+  "hotel": "00045",
+  "hotel_name": "東横INN佐賀駅前",
+  "start": "2026-10-31",
+  "nights": 1,
+  "people": 2,
+  "rooms": 1,
+  "smoking": "all",
+  "room_keywords": [],
+  "member": false,
+  "active": true,
+  "created": "2026-10-17T16:41:45+09:00"
  }
 ]
