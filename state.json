@@ -2,15 +2,15 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-18T21:30:08+09:00",
-  "last_saved": "2026-10-18T21:30:08+09:00"
+  "last_run": "2026-10-18T21:46:05+09:00",
+  "last_saved": "2026-10-18T21:46:05+09:00"
  },
  "20e9141b": {
   "status": "full",
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-18T21:29:43+09:00",
+  "last_checked": "2026-10-18T21:45:43+09:00",
   "error": null,
   "last_notified": "2026-10-16T07:35:35+09:00"
  },
@@ -28,7 +28,7 @@
     "url": "https://www.toyoko-inn.com/search/result/room_plan/?hotel=00045&people=2&room=1&smoking=all&start=2026-10-30&end=2026-10-31"
    }
   ],
-  "last_checked": "2026-10-18T21:29:47+09:00",
+  "last_checked": "2026-10-18T21:45:47+09:00",
   "error": null,
   "last_notified": "2026-10-18T18:37:37+09:00"
  },
@@ -86,7 +86,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-18T21:29:57+09:00",
+  "last_checked": "2026-10-18T21:45:56+09:00",
   "error": null,
   "last_notified": "2026-10-18T18:37:48+09:00"
  },
@@ -144,7 +144,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-18T21:30:02+09:00",
+  "last_checked": "2026-10-18T21:46:01+09:00",
   "error": null,
   "last_notified": "2026-10-18T18:37:54+09:00"
  },
@@ -195,7 +195,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-18T21:30:08+09:00",
+  "last_checked": "2026-10-18T21:46:05+09:00",
   "error": null
  },
  "4fd03875": {
@@ -245,7 +245,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-18T21:30:08+09:00",
+  "last_checked": "2026-10-18T21:46:05+09:00",
   "error": null
  }
 }
