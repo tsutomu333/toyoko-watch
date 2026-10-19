@@ -2,15 +2,15 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-19T11:02:59+09:00",
-  "last_saved": "2026-10-19T11:02:59+09:00"
+  "last_run": "2026-10-19T11:19:00+09:00",
+  "last_saved": "2026-10-19T11:19:00+09:00"
  },
  "20e9141b": {
   "status": "full",
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-19T11:02:37+09:00",
+  "last_checked": "2026-10-19T11:18:37+09:00",
   "error": null,
   "last_notified": "2026-10-16T07:35:35+09:00"
  },
@@ -19,7 +19,7 @@
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-19T11:02:40+09:00",
+  "last_checked": "2026-10-19T11:18:40+09:00",
   "error": null,
   "last_notified": "2026-10-18T18:37:37+09:00"
  },
@@ -77,7 +77,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-19T11:02:49+09:00",
+  "last_checked": "2026-10-19T11:18:49+09:00",
   "error": null,
   "last_notified": "2026-10-18T23:46:01+09:00"
  },
@@ -135,7 +135,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-19T11:02:54+09:00",
+  "last_checked": "2026-10-19T11:18:55+09:00",
   "error": null,
   "last_notified": "2026-10-18T18:37:54+09:00"
  },
@@ -186,7 +186,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-19T11:02:59+09:00",
+  "last_checked": "2026-10-19T11:19:00+09:00",
   "error": null,
   "last_notified": "2026-10-19T04:09:24+09:00"
  },
@@ -237,7 +237,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-19T11:02:59+09:00",
+  "last_checked": "2026-10-19T11:19:00+09:00",
   "error": null,
   "last_notified": "2026-10-19T04:09:27+09:00"
  }
