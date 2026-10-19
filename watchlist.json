@@ -79,19 +79,5 @@
   "member": false,
   "active": true,
   "created": "2026-10-18T17:00:46+09:00"
- },
- {
-  "id": "4fd03875",
-  "hotel": "00032",
-  "hotel_name": "東横INN博多駅南",
-  "start": "2026-10-29",
-  "nights": 1,
-  "people": 2,
-  "rooms": 1,
-  "smoking": "all",
-  "room_keywords": [],
-  "member": false,
-  "active": true,
-  "created": "2026-10-18T17:00:48+09:00"
  }
 ]
