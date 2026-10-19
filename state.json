@@ -2,15 +2,15 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-19T12:05:33+09:00",
-  "last_saved": "2026-10-19T12:05:33+09:00"
+  "last_run": "2026-10-19T12:18:34+09:00",
+  "last_saved": "2026-10-19T12:18:34+09:00"
  },
  "20e9141b": {
   "status": "full",
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-19T12:05:10+09:00",
+  "last_checked": "2026-10-19T12:18:09+09:00",
   "error": null,
   "last_notified": "2026-10-16T07:35:35+09:00"
  },
@@ -19,7 +19,7 @@
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-19T12:05:13+09:00",
+  "last_checked": "2026-10-19T12:18:13+09:00",
   "error": null,
   "last_notified": "2026-10-18T18:37:37+09:00"
  },
@@ -77,7 +77,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-19T12:05:22+09:00",
+  "last_checked": "2026-10-19T12:18:22+09:00",
   "error": null,
   "last_notified": "2026-10-18T23:46:01+09:00"
  },
@@ -135,13 +135,13 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-19T12:05:27+09:00",
+  "last_checked": "2026-10-19T12:18:27+09:00",
   "error": null,
   "last_notified": "2026-10-18T18:37:54+09:00"
  },
  "18a2b3ed": {
-  "status": "full",
-  "vacant": 0,
+  "status": "vacant",
+  "vacant": 1,
   "rooms": [
    {
     "type": "エコノミーダブル",
@@ -167,9 +167,9 @@
    {
     "type": "ダブル",
     "smoking": true,
-    "vacant": 0,
-    "price": null,
-    "plan": null
+    "vacant": 1,
+    "price": 11800,
+    "plan": "スタンダードプラン"
    },
    {
     "type": "ツイン",
@@ -186,13 +186,13 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-19T12:05:33+09:00",
+  "last_checked": "2026-10-19T12:18:32+09:00",
   "error": null,
-  "last_notified": "2026-10-19T04:09:24+09:00"
+  "last_notified": "2026-10-19T12:18:32+09:00"
  },
  "4fd03875": {
-  "status": "full",
-  "vacant": 0,
+  "status": "vacant",
+  "vacant": 1,
   "rooms": [
    {
     "type": "エコノミーダブル",
@@ -218,9 +218,9 @@
    {
     "type": "ダブル",
     "smoking": true,
-    "vacant": 0,
-    "price": null,
-    "plan": null
+    "vacant": 1,
+    "price": 11800,
+    "plan": "スタンダードプラン"
    },
    {
     "type": "ツイン",
@@ -237,8 +237,8 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-19T12:05:33+09:00",
+  "last_checked": "2026-10-19T12:18:33+09:00",
   "error": null,
-  "last_notified": "2026-10-19T04:09:27+09:00"
+  "last_notified": "2026-10-19T12:18:33+09:00"
  }
 }
