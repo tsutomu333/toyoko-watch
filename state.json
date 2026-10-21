@@ -1,16 +1,16 @@
 {
  "_meta": {
-  "fail_streak": 199,
+  "fail_streak": 200,
   "block_alerted": true,
-  "last_run": "2026-10-22T04:22:32+09:00",
-  "last_saved": "2026-10-22T04:22:32+09:00"
+  "last_run": "2026-10-22T04:23:32+09:00",
+  "last_saved": "2026-10-22T04:23:32+09:00"
  },
  "20e9141b": {
   "status": "error",
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-22T04:22:16+09:00",
+  "last_checked": "2026-10-22T04:23:16+09:00",
   "error": "空室一覧の取得に失敗: Expecting value: line 1 column 1 (char 0)",
   "last_notified": "2026-10-16T07:35:35+09:00"
  },
@@ -19,7 +19,7 @@
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-22T04:22:19+09:00",
+  "last_checked": "2026-10-22T04:23:19+09:00",
   "error": "空室一覧の取得に失敗: Expecting value: line 1 column 1 (char 0)",
   "last_notified": "2026-10-21T10:10:06+09:00"
  },
@@ -77,7 +77,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-22T04:22:25+09:00",
+  "last_checked": "2026-10-22T04:23:25+09:00",
   "error": "ページ構造が想定と違う（ブロック or サイト変更の可能性）",
   "last_notified": "2026-10-21T06:47:00+09:00"
  },
@@ -135,7 +135,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-22T04:22:28+09:00",
+  "last_checked": "2026-10-22T04:23:29+09:00",
   "error": "ページ構造が想定と違う（ブロック or サイト変更の可能性）",
   "last_notified": "2026-10-19T17:53:21+09:00"
  },
@@ -186,7 +186,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-22T04:22:32+09:00",
+  "last_checked": "2026-10-22T04:23:32+09:00",
   "error": "ページ構造が想定と違う（ブロック or サイト変更の可能性）",
   "last_notified": "2026-10-21T18:51:33+09:00"
  }
