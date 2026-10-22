@@ -2,16 +2,16 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-22T15:20:14+09:00",
-  "last_saved": "2026-10-22T15:20:14+09:00"
+  "last_run": "2026-10-22T15:21:32+09:00",
+  "last_saved": "2026-10-22T15:21:32+09:00"
  },
  "20e9141b": {
-  "status": "full",
+  "status": "error",
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-22T15:19:28+09:00",
-  "error": null,
+  "last_checked": "2026-10-22T15:20:29+09:00",
+  "error": "HTTP 504",
   "last_notified": "2026-10-16T07:35:35+09:00"
  },
  "3bfd9c03": {
@@ -19,12 +19,12 @@
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-22T15:19:39+09:00",
+  "last_checked": "2026-10-22T15:20:46+09:00",
   "error": null,
   "last_notified": "2026-10-21T10:10:06+09:00"
  },
  "3b0e70ae": {
-  "status": "full",
+  "status": "error",
   "vacant": 0,
   "rooms": [
    {
@@ -77,12 +77,12 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-22T15:19:54+09:00",
-  "error": null,
+  "last_checked": "2026-10-22T15:21:00+09:00",
+  "error": "HTTP 502",
   "last_notified": "2026-10-21T06:47:00+09:00"
  },
  "32e938dd": {
-  "status": "full",
+  "status": "error",
   "vacant": 0,
   "rooms": [
    {
@@ -135,8 +135,8 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-22T15:20:00+09:00",
-  "error": null,
+  "last_checked": "2026-10-22T15:21:04+09:00",
+  "error": "HTTP 502",
   "last_notified": "2026-10-19T17:53:21+09:00"
  },
  "18a2b3ed": {
@@ -186,8 +186,8 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-22T15:20:14+09:00",
-  "error": "HTTP 504",
+  "last_checked": "2026-10-22T15:21:32+09:00",
+  "error": "HTTP 502",
   "last_notified": "2026-10-21T18:51:33+09:00"
  }
 }
