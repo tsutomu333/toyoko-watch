@@ -2,16 +2,16 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-23T18:42:48+09:00",
-  "last_saved": "2026-10-23T18:42:48+09:00"
+  "last_run": "2026-10-23T18:43:50+09:00",
+  "last_saved": "2026-10-23T18:43:50+09:00"
  },
  "20e9141b": {
-  "status": "error",
+  "status": "full",
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-23T18:42:27+09:00",
-  "error": "空室一覧の取得に失敗: Remote end closed connection without response",
+  "last_checked": "2026-10-23T18:43:27+09:00",
+  "error": null,
   "last_notified": "2026-10-16T07:35:35+09:00"
  },
  "3bfd9c03": {
@@ -19,7 +19,7 @@
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-23T18:42:30+09:00",
+  "last_checked": "2026-10-23T18:43:30+09:00",
   "error": null,
   "last_notified": "2026-10-22T23:18:49+09:00"
  },
@@ -77,7 +77,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-23T18:42:38+09:00",
+  "last_checked": "2026-10-23T18:43:40+09:00",
   "error": null,
   "last_notified": "2026-10-22T21:59:49+09:00"
  },
@@ -135,7 +135,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-23T18:42:42+09:00",
+  "last_checked": "2026-10-23T18:43:45+09:00",
   "error": null,
   "last_notified": "2026-10-22T21:59:56+09:00"
  },
@@ -186,7 +186,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-23T18:42:48+09:00",
+  "last_checked": "2026-10-23T18:43:50+09:00",
   "error": null,
   "last_notified": "2026-10-23T15:00:31+09:00"
  }
