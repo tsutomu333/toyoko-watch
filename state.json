@@ -2,8 +2,8 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-24T06:46:11+09:00",
-  "last_saved": "2026-10-24T06:46:11+09:00"
+  "last_run": "2026-10-24T06:47:13+09:00",
+  "last_saved": "2026-10-24T06:47:13+09:00"
  },
  "20e9141b": {
   "status": "vacant",
@@ -20,18 +20,27 @@
     "rooms": 1
    }
   ],
-  "last_checked": "2026-10-24T06:45:45+09:00",
+  "last_checked": "2026-10-24T06:46:46+09:00",
   "error": null,
   "last_notified": "2026-10-24T04:28:52+09:00"
  },
  "3bfd9c03": {
-  "status": "full",
-  "vacant": 0,
-  "vacant_hotels": [],
-  "hotels": [],
-  "last_checked": "2026-10-24T06:45:53+09:00",
+  "status": "vacant",
+  "vacant": 1,
+  "vacant_hotels": [
+   "00045"
+  ],
+  "hotels": [
+   {
+    "code": "00045",
+    "name": "東横INN佐賀駅前",
+    "price": 12350,
+    "url": "https://www.toyoko-inn.com/search/result/room_plan/?hotel=00045&people=2&room=1&smoking=all&start=2026-10-30&end=2026-10-31"
+   }
+  ],
+  "last_checked": "2026-10-24T06:46:53+09:00",
   "error": null,
-  "last_notified": "2026-10-23T21:45:39+09:00"
+  "last_notified": "2026-10-24T06:46:53+09:00"
  },
  "3b0e70ae": {
   "status": "full",
@@ -87,7 +96,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-24T06:46:01+09:00",
+  "last_checked": "2026-10-24T06:47:03+09:00",
   "error": null,
   "last_notified": "2026-10-22T21:59:49+09:00"
  },
@@ -145,7 +154,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-24T06:46:06+09:00",
+  "last_checked": "2026-10-24T06:47:08+09:00",
   "error": null,
   "last_notified": "2026-10-22T21:59:56+09:00"
  },
@@ -196,7 +205,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-24T06:46:11+09:00",
+  "last_checked": "2026-10-24T06:47:13+09:00",
   "error": null,
   "last_notified": "2026-10-24T05:22:56+09:00"
  }
