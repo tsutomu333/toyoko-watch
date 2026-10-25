@@ -15,5 +15,24 @@
   "member": true,
   "active": true,
   "created": "2026-10-26T08:18:50+09:00"
+ },
+ {
+  "id": "79666fa0",
+  "hotel": "00045",
+  "hotel_name": "東横INN佐賀駅前",
+  "start": "2026-10-31",
+  "nights": 1,
+  "people": 2,
+  "rooms": 1,
+  "smoking": "all",
+  "room_keywords": [
+   "ツイン",
+   "トリプル",
+   "ハートフル",
+   "プレミアム"
+  ],
+  "member": true,
+  "active": true,
+  "created": "2026-10-26T08:20:01+09:00"
  }
 ]
