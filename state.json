@@ -2,15 +2,15 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-25T10:39:41+09:00",
-  "last_saved": "2026-10-25T10:39:41+09:00"
+  "last_run": "2026-10-25T10:43:41+09:00",
+  "last_saved": "2026-10-25T10:43:41+09:00"
  },
  "20e9141b": {
   "status": "full",
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-25T10:39:19+09:00",
+  "last_checked": "2026-10-25T10:43:19+09:00",
   "error": null,
   "last_notified": "2026-10-24T04:28:52+09:00"
  },
@@ -19,7 +19,7 @@
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-25T10:39:23+09:00",
+  "last_checked": "2026-10-25T10:43:23+09:00",
   "error": null,
   "last_notified": "2026-10-24T06:46:53+09:00"
  },
@@ -77,13 +77,13 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-25T10:39:31+09:00",
+  "last_checked": "2026-10-25T10:43:31+09:00",
   "error": null,
   "last_notified": "2026-10-24T18:17:52+09:00"
  },
  "32e938dd": {
-  "status": "vacant",
-  "vacant": 1,
+  "status": "full",
+  "vacant": 0,
   "rooms": [
    {
     "type": "エコノミーダブル",
@@ -109,9 +109,9 @@
    {
     "type": "ダブル",
     "smoking": false,
-    "vacant": 1,
-    "price": 14725,
-    "plan": "早割7日前 5％OFF"
+    "vacant": 0,
+    "price": null,
+    "plan": null
    },
    {
     "type": "ツイン",
@@ -135,7 +135,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-25T10:39:36+09:00",
+  "last_checked": "2026-10-25T10:43:36+09:00",
   "error": null,
   "last_notified": "2026-10-25T10:08:02+09:00"
  },
@@ -186,7 +186,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-25T10:39:41+09:00",
+  "last_checked": "2026-10-25T10:43:41+09:00",
   "error": null,
   "last_notified": "2026-10-25T08:24:01+09:00"
  }
