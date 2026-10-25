@@ -2,15 +2,15 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-25T23:54:24+09:00",
-  "last_saved": "2026-10-25T23:54:24+09:00"
+  "last_run": "2026-10-26T00:07:26+09:00",
+  "last_saved": "2026-10-26T00:07:26+09:00"
  },
  "20e9141b": {
   "status": "full",
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-10-25T23:54:01+09:00",
+  "last_checked": "2026-10-26T00:07:02+09:00",
   "error": null,
   "last_notified": "2026-10-24T04:28:52+09:00"
  },
@@ -28,7 +28,7 @@
     "url": "https://www.toyoko-inn.com/search/result/room_plan/?hotel=00045&people=2&room=1&smoking=all&start=2026-10-30&end=2026-10-31"
    }
   ],
-  "last_checked": "2026-10-25T23:54:05+09:00",
+  "last_checked": "2026-10-26T00:07:05+09:00",
   "error": null,
   "last_notified": "2026-10-25T21:51:26+09:00"
  },
@@ -86,7 +86,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-25T23:54:14+09:00",
+  "last_checked": "2026-10-26T00:07:14+09:00",
   "error": null,
   "last_notified": "2026-10-25T23:39:40+09:00"
  },
@@ -144,20 +144,20 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-25T23:54:19+09:00",
+  "last_checked": "2026-10-26T00:07:19+09:00",
   "error": null,
   "last_notified": "2026-10-25T23:21:48+09:00"
  },
  "18a2b3ed": {
-  "status": "full",
-  "vacant": 0,
+  "status": "vacant",
+  "vacant": 1,
   "rooms": [
    {
     "type": "エコノミーダブル",
     "smoking": false,
-    "vacant": 0,
-    "price": null,
-    "plan": null
+    "vacant": 1,
+    "price": 10800,
+    "plan": "スタンダードプラン"
    },
    {
     "type": "エコノミーダブル",
@@ -195,8 +195,8 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-25T23:54:24+09:00",
+  "last_checked": "2026-10-26T00:07:24+09:00",
   "error": null,
-  "last_notified": "2026-10-25T22:41:17+09:00"
+  "last_notified": "2026-10-26T00:07:24+09:00"
  }
 }
