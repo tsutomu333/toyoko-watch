@@ -2,8 +2,8 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-28T12:16:27+09:00",
-  "last_saved": "2026-10-28T12:16:27+09:00"
+  "last_run": "2026-10-28T12:18:24+09:00",
+  "last_saved": "2026-10-28T12:18:24+09:00"
  },
  "ac23631f": {
   "status": "full",
@@ -24,7 +24,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-28T12:16:14+09:00",
+  "last_checked": "2026-10-28T12:18:15+09:00",
   "error": null,
   "last_notified": "2026-10-26T15:49:25+09:00"
  },
@@ -54,13 +54,13 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-28T12:16:19+09:00",
+  "last_checked": "2026-10-28T12:18:19+09:00",
   "error": null,
   "last_notified": "2026-10-28T12:16:19+09:00"
  },
  "35b5e711": {
-  "status": "vacant",
-  "vacant": 1,
+  "status": "full",
+  "vacant": 0,
   "rooms": [
    {
     "type": "ツイン",
@@ -72,9 +72,9 @@
    {
     "type": "ツイン",
     "smoking": false,
-    "vacant": 1,
-    "price": 14107,
-    "plan": "【室数限定】バリュープラン"
+    "vacant": 0,
+    "price": null,
+    "plan": null
    },
    {
     "type": "ハートフルツイン",
@@ -84,7 +84,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-28T12:16:25+09:00",
+  "last_checked": "2026-10-28T12:18:24+09:00",
   "error": null,
   "last_notified": "2026-10-28T12:16:25+09:00"
  }
