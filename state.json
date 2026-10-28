@@ -2,8 +2,8 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-29T03:54:47+09:00",
-  "last_saved": "2026-10-29T03:54:47+09:00"
+  "last_run": "2026-10-29T04:09:48+09:00",
+  "last_saved": "2026-10-29T04:09:48+09:00"
  },
  "ac23631f": {
   "status": "vacant",
@@ -24,7 +24,7 @@
     "plan": "スタンダードプラン"
    }
   ],
-  "last_checked": "2026-10-29T03:54:38+09:00",
+  "last_checked": "2026-10-29T04:09:38+09:00",
   "error": null,
   "last_notified": "2026-10-28T21:08:01+09:00"
  },
@@ -54,7 +54,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-29T03:54:43+09:00",
+  "last_checked": "2026-10-29T04:09:42+09:00",
   "error": null,
   "last_notified": "2026-10-28T12:16:19+09:00"
  },
@@ -84,7 +84,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-29T03:54:47+09:00",
+  "last_checked": "2026-10-29T04:09:48+09:00",
   "error": null,
   "last_notified": "2026-10-28T20:05:17+09:00"
  }
