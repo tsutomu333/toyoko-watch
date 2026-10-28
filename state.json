@@ -2,12 +2,12 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-10-29T00:18:03+09:00",
-  "last_saved": "2026-10-29T00:18:03+09:00"
+  "last_run": "2026-10-29T00:19:04+09:00",
+  "last_saved": "2026-10-29T00:19:04+09:00"
  },
  "ac23631f": {
   "status": "vacant",
-  "vacant": 4,
+  "vacant": 5,
   "rooms": [
    {
     "type": "エコノミーダブル",
@@ -19,12 +19,12 @@
    {
     "type": "ダブル",
     "smoking": false,
-    "vacant": 3,
+    "vacant": 4,
     "price": 11210,
     "plan": "スタンダードプラン"
    }
   ],
-  "last_checked": "2026-10-29T00:17:54+09:00",
+  "last_checked": "2026-10-29T00:18:53+09:00",
   "error": null,
   "last_notified": "2026-10-28T21:08:01+09:00"
  },
@@ -54,7 +54,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-29T00:17:59+09:00",
+  "last_checked": "2026-10-29T00:18:59+09:00",
   "error": null,
   "last_notified": "2026-10-28T12:16:19+09:00"
  },
@@ -84,7 +84,7 @@
     "plan": null
    }
   ],
-  "last_checked": "2026-10-29T00:18:03+09:00",
+  "last_checked": "2026-10-29T00:19:04+09:00",
   "error": null,
   "last_notified": "2026-10-28T20:05:17+09:00"
  }
