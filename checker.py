@@ -106,6 +106,22 @@ def booking_url(watch: dict, hotel: str | None = None) -> str:
     return f"{SITE}/search/result/room_plan/?" + urllib.parse.urlencode(q)
 
 
+def reserve_url(watch: dict, plan_code: str, room_type_id: str, is_smoking: bool, hotel: str | None = None) -> str:
+    """そのプランの「予約する」ボタンと同じ行き先。ログイン後そのまま予約入力画面に進む"""
+    q = {
+        "hotel_code": hotel or watch.get("hotel") or watch["hotels"][0],
+        "plan_code": plan_code,
+        "room_type_id": room_type_id,
+        "checkin_date": watch["start"],
+        "nights": watch.get("nights", 1),
+        "number_of_people": watch.get("people", 1),
+        "number_of_room": watch.get("rooms", 1),
+        "is_smoking": "true" if is_smoking else "false",
+        "tab": "roomType",
+    }
+    return f"{SITE}/login/?" + urllib.parse.urlencode(q)
+
+
 def area_url(watch: dict) -> str:
     """公式サイトの県別の検索結果一覧（複数ホテル監視の「一覧」ボタン用）"""
     q = {"people": watch.get("people", 1), "room": watch.get("rooms", 1),
@@ -158,14 +174,17 @@ def evaluate(watch: dict, plan: dict) -> dict:
         name = rt.get("roomTypeName", "")
         if keywords and not any(k in name for k in keywords):
             continue
-        best_vac, best_price, best_plan = 0, None, None
+        best_vac, best_price, best_plan, best_code, std_code = 0, None, None, None, None
         for p in rt.get("plans", []):
             v = int((p.get("vacant") or {}).get(vkey) or 0)
             price = (p.get("price") or {}).get(pkey)
             # 学割など条件付きプランは料金表示に使わない（空室数の判定には含める）
             special = any(x in (p.get("planName") or "") for x in EXCLUDE_PRICE_PLANS)
             if v > 0 and not special and (best_price is None or (price or 10**9) < best_price):
-                best_price, best_plan = price, p.get("planName")
+                best_price, best_plan, best_code = price, p.get("planName"), p.get("planCode")
+            # 予約入力への直行はスタンダードプラン優先（早割はカード事前決済・キャンセル条件が厳しいため）
+            if v > 0 and "スタンダード" in (p.get("planName") or ""):
+                std_code = p.get("planCode")
             best_vac = max(best_vac, v)
         rooms.append({
             "type": name,
@@ -173,6 +192,7 @@ def evaluate(watch: dict, plan: dict) -> dict:
             "vacant": best_vac,
             "price": best_price,
             "plan": best_plan,
+            "reserve_url": reserve_url(watch, std_code or best_code, rt.get("roomTypeId", ""), is_smoking) if (std_code or best_code) else None,
         })
     total = sum(r["vacant"] for r in rooms)
     return {
@@ -333,6 +353,17 @@ def multi_mail(watch: dict, result: dict, new_codes: list[str]) -> tuple[str, st
     return subject, body
 
 
+def reserve_links(result: dict) -> list[tuple[str, str]]:
+    """空いている部屋を安い順に最大3つ。（ボタン名, 予約入力へのURL）"""
+    rs = [r for r in result["rooms"] if r["vacant"] > 0 and r.get("reserve_url")]
+    rs.sort(key=lambda r: r["price"] if r["price"] else 10**9)
+    out = []
+    for r in rs[:3]:
+        label = f"{r['type']}{'喫' if r['smoking'] else '禁'}" + (f" {r['price']:,}" if r["price"] else "")
+        out.append((label, r["reserve_url"]))
+    return out
+
+
 def vacancy_mail(watch: dict, result: dict) -> tuple[str, str]:
     lines = []
     for r in result["rooms"]:
@@ -342,7 +373,8 @@ def vacancy_mail(watch: dict, result: dict) -> tuple[str, str]:
     subject = f"【空室あり】{title(watch)} {watch['start']}"
     body = (
         "キャンセルが出ました。早い者勝ちなので、すぐ予約してください。\n\n"
-        f"▼ 予約ページ（タップで開く）\n{booking_url(watch)}\n\n"
+        + "".join(f"▼ 予約入力へ直行：{lbl}\n{u}\n" for lbl, u in reserve_links(result)) + "\n"
+        f"▼ プラン一覧（タップで開く）\n{booking_url(watch)}\n\n"
         "▼ 空いている部屋\n" + "\n".join(lines) + "\n\n"
         "▼ 登録条件\n" + describe(watch) + "\n\n"
         f"確認時刻: {now_jst():%Y-%m-%d %H:%M} (JST)\n"
@@ -447,8 +479,10 @@ def run_once() -> bool:
         if result["vacant"] > 0 and not prev:
             subject, body = vacancy_mail(w, result)
             rooms = "・".join(r["type"] for r in result["rooms"] if r["vacant"] > 0)
+            links = reserve_links(result)
+            tap = links[0][1] if links else booking_url(w)
             if notify(subject, body, f"空室あり {fmt_day(w['start'])} {title(w).replace('東横INN', '')}",
-                      f"{rooms}（残り{result['vacant']}室）\nタップで予約ページ", booking_url(w)):
+                      f"{rooms}（残り{result['vacant']}室）\nタップで予約入力へ（安い部屋）", tap, links):
                 st["last_notified"] = ts
 
     # 削除された条件の状態は掃除する
