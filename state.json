@@ -2,8 +2,8 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-11-02T11:32:26+09:00",
-  "last_saved": "2026-11-02T11:32:26+09:00"
+  "last_run": "2026-11-02T11:41:28+09:00",
+  "last_saved": "2026-11-02T11:41:28+09:00"
  },
  "ac23631f": {
   "status": "expired",
@@ -59,8 +59,8 @@
   "last_notified": "2026-10-31T18:00:01+09:00"
  },
  "35b5e711": {
-  "status": "full",
-  "vacant": 0,
+  "status": "vacant",
+  "vacant": 1,
   "rooms": [
    {
     "type": "ツイン",
@@ -73,10 +73,10 @@
    {
     "type": "ツイン",
     "smoking": false,
-    "vacant": 0,
-    "price": null,
-    "plan": null,
-    "reserve_url": null
+    "vacant": 1,
+    "price": 14107,
+    "plan": "【室数限定】バリュープラン",
+    "reserve_url": "https://www.toyoko-inn.com/login/?hotel_code=00045&plan_code=9901&room_type_id=TK&checkin_date=2026-11-02&nights=1&number_of_people=2&number_of_room=1&is_smoking=false&tab=roomType"
    },
    {
     "type": "ハートフルツイン",
@@ -87,8 +87,8 @@
     "reserve_url": null
    }
   ],
-  "last_checked": "2026-11-02T11:32:26+09:00",
+  "last_checked": "2026-11-02T11:41:27+09:00",
   "error": null,
-  "last_notified": "2026-11-02T06:29:51+09:00"
+  "last_notified": "2026-11-02T11:41:27+09:00"
  }
 }
