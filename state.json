@@ -2,42 +2,15 @@
  "_meta": {
   "fail_streak": 0,
   "block_alerted": false,
-  "last_run": "2026-11-04T19:05:00+09:00",
-  "last_saved": "2026-11-04T19:05:00+09:00"
- },
- "3200c7db": {
-  "status": "vacant",
-  "vacant": 2,
-  "vacant_hotels": [
-   "00101",
-   "00125"
-  ],
-  "hotels": [
-   {
-    "code": "00101",
-    "name": "東横INN宮崎駅前",
-    "price": 8645,
-    "url": "https://www.toyoko-inn.com/search/result/room_plan/?hotel=00101&people=1&room=1&smoking=all&start=2026-11-05&end=2026-11-06",
-    "rooms": 9
-   },
-   {
-    "code": "00125",
-    "name": "東横INN宮崎中央通",
-    "price": 11210,
-    "url": "https://www.toyoko-inn.com/search/result/room_plan/?hotel=00125&people=1&room=1&smoking=all&start=2026-11-05&end=2026-11-06",
-    "rooms": 7
-   }
-  ],
-  "last_checked": "2026-11-04T19:04:38+09:00",
-  "error": null,
-  "last_notified": "2026-11-04T19:03:37+09:00"
+  "last_run": "2026-11-04T19:06:52+09:00",
+  "last_saved": "2026-11-04T19:06:52+09:00"
  },
  "104c02ce": {
   "status": "full",
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-11-04T19:04:52+09:00",
+  "last_checked": "2026-11-04T19:06:37+09:00",
   "error": null
  },
  "93bdfac9": {
@@ -45,7 +18,23 @@
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-11-04T19:04:56+09:00",
+  "last_checked": "2026-11-04T19:06:41+09:00",
+  "error": null
+ },
+ "ae4d5097": {
+  "status": "full",
+  "vacant": 0,
+  "vacant_hotels": [],
+  "hotels": [],
+  "last_checked": "2026-11-04T19:06:45+09:00",
+  "error": null
+ },
+ "e9bcd601": {
+  "status": "full",
+  "vacant": 0,
+  "vacant_hotels": [],
+  "hotels": [],
+  "last_checked": "2026-11-04T19:06:49+09:00",
   "error": null
  }
 }
