@@ -1,23 +1,5 @@
 [
  {
-  "id": "3200c7db",
-  "hotels": [
-   "00101",
-   "00125"
-  ],
-  "label": "宮崎県（全2軒）",
-  "pref": "宮崎県",
-  "start": "2026-11-05",
-  "nights": 1,
-  "people": 1,
-  "rooms": 1,
-  "smoking": "all",
-  "room_keywords": [],
-  "member": true,
-  "active": true,
-  "created": "2026-11-04T19:02:36+09:00"
- },
- {
   "id": "104c02ce",
   "hotels": [
    "00101",
