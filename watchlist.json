@@ -70,5 +70,28 @@
   "member": true,
   "active": true,
   "created": "2026-11-04T19:04:44+09:00"
+ },
+ {
+  "id": "e9bcd601",
+  "hotels": [
+   "00101",
+   "00125"
+  ],
+  "label": "宮崎県（全2軒）",
+  "pref": "宮崎県",
+  "start": "2027-02-06",
+  "nights": 1,
+  "people": 2,
+  "rooms": 1,
+  "smoking": "all",
+  "room_keywords": [
+   "ツイン",
+   "トリプル",
+   "ハートフル",
+   "プレミアム"
+  ],
+  "member": true,
+  "active": true,
+  "created": "2026-11-04T19:05:39+09:00"
  }
 ]
