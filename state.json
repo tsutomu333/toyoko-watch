@@ -1,43 +1,43 @@
 {
  "_meta": {
-  "fail_streak": 144,
-  "block_alerted": true,
-  "last_run": "2026-11-12T04:24:25+09:00",
-  "last_saved": "2026-11-12T04:24:25+09:00"
+  "fail_streak": 0,
+  "block_alerted": false,
+  "last_run": "2026-11-12T04:25:26+09:00",
+  "last_saved": "2026-11-12T04:25:26+09:00"
  },
  "104c02ce": {
-  "status": "error",
+  "status": "full",
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-11-12T04:24:13+09:00",
-  "error": "空室一覧の取得に失敗: Expecting value: line 1 column 1 (char 0)",
+  "last_checked": "2026-11-12T04:25:12+09:00",
+  "error": null,
   "last_notified": "2026-11-10T15:39:33+09:00"
  },
  "93bdfac9": {
-  "status": "error",
+  "status": "full",
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-11-12T04:24:16+09:00",
-  "error": "空室一覧の取得に失敗: Expecting value: line 1 column 1 (char 0)",
+  "last_checked": "2026-11-12T04:25:15+09:00",
+  "error": null,
   "last_notified": "2026-11-10T15:39:42+09:00"
  },
  "ae4d5097": {
-  "status": "error",
+  "status": "full",
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-11-12T04:24:19+09:00",
-  "error": "空室一覧の取得に失敗: Expecting value: line 1 column 1 (char 0)",
+  "last_checked": "2026-11-12T04:25:19+09:00",
+  "error": null,
   "last_notified": "2026-11-10T15:38:41+09:00"
  },
  "e9bcd601": {
-  "status": "error",
+  "status": "full",
   "vacant": 0,
   "vacant_hotels": [],
   "hotels": [],
-  "last_checked": "2026-11-12T04:24:22+09:00",
-  "error": "空室一覧の取得に失敗: Expecting value: line 1 column 1 (char 0)"
+  "last_checked": "2026-11-12T04:25:22+09:00",
+  "error": null
  }
 }
