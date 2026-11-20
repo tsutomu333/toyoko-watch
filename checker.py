@@ -494,6 +494,22 @@ def run_once() -> bool:
     if fail_count and not ok_count:
         meta["fail_streak"] = meta.get("fail_streak", 0) + 1
     elif ok_count:
+        if meta.get("block_alerted"):
+            # 止まったと知らせたあとに戻ったら、復旧も知らせる
+            down = meta.get("fail_streak", 0)
+            try:
+                send_push("✅ 空室ウォッチ復旧", "空室データをまた取得できるようになりました。監視を続けています。")
+            except Exception as e:  # noqa: BLE001
+                print(f"[push] 送信失敗: {e}")
+            try:
+                send_mail(
+                    "【復旧】東横イン空室ウォッチが空室を取得できるようになりました",
+                    f"{now_jst().strftime('%m/%d %H:%M')} に空室データの取得が戻りました"
+                    f"（それまで{down}回連続で失敗）。\n"
+                    "いまは通常どおり監視して、空室が出たら通知します。\n",
+                )
+            except Exception as e:  # noqa: BLE001
+                print(f"[mail] 送信失敗: {e}")
         meta["fail_streak"] = 0
         meta["block_alerted"] = False
     if meta["fail_streak"] >= BLOCK_ALERT_AFTER and not meta.get("block_alerted"):
