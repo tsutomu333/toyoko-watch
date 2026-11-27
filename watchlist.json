@@ -61,5 +61,23 @@
   "member": true,
   "active": true,
   "created": "2026-11-26T15:28:48+09:00"
+ },
+ {
+  "id": "8588fd0d",
+  "hotels": [
+   "00051",
+   "00061"
+  ],
+  "label": "新横浜駅前本館・新横浜駅前新館",
+  "pref": "神奈川県",
+  "start": "2027-02-11",
+  "nights": 1,
+  "people": 1,
+  "rooms": 1,
+  "smoking": "noSmoking",
+  "room_keywords": [],
+  "member": true,
+  "active": true,
+  "created": "2026-11-27T20:39:31+09:00"
  }
 ]
